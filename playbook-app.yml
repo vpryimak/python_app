@@ -1,0 +1,11 @@
+---
+- name: Make common tasks
+  hosts: all
+  user: ubuntu
+  become: true
+  roles:
+    - base
+    - nginx
+    - my_app
+    - postgres
+    - network

@@ -1,0 +1,43 @@
+---
+
+- name: install postgresql server
+  apt:
+    name=postgresql
+    state=present
+
+- name: start postgresql server
+  systemd:
+      enabled: yes
+      name: postgresql
+      state: started
+
+- name: change postgres pg hba access
+  lineinfile:
+      path: /etc/postgresql/10/main/pg_hba.conf
+      regexp: 'host  all  all 0.0.0.0/0 md5'
+      line: 'host  all  all 0.0.0.0/0 md5'
+
+- name: Restart postgresql server
+  systemd:
+      name: postgresql
+      state: restarted
+
+- pip:
+    name: psycopg2-binary
+
+- name: create postgresql db
+  postgresql_db:
+    name: "my_app_db"
+    state: present
+    owner: my_app
+  become: true
+  become_user: postgres
+
+- name: create postgresql user
+  postgresql_user:
+    db: "my_app_db"
+    user: "my_app"
+    password: "4d95db2814a6e057611f7883a9a243f6"
+    role_attr_flags: "CREATEDB,NOSUPERUSER"
+  become: true
+  become_user: postgres

@@ -1,0 +1,11 @@
+---
+
+- name: Add managed vhost config files.
+  template:
+    src: "templates/my_app.conf"
+    dest: "/etc/nginx/conf.d/my_app.conf"
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload nginx

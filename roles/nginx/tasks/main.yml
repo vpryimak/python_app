@@ -1,0 +1,17 @@
+---
+
+- name: Install Nginx Web Server on Ubuntu 18.04 LTS
+  apt:
+    name=nginx
+    state=latest
+  when:
+    ansible_os_family == "Debian"
+  notify:
+    - nginx systemd
+
+- name: Remove default symlink
+  file:
+   path: "/etc/nginx/sites-enabled/default"
+   state: absent
+# Vhost configuration.
+- include: vhost.yml

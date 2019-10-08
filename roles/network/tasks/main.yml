@@ -1,0 +1,14 @@
+
+- name: Add yml file for netplan
+  template:
+    src: "templates/50-cloud-init.yaml"
+    dest: "/etc/netplan/50-cloud-init.yaml"
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Apply changes"
+  command: netplan apply
+  become: true
+  become_user: root

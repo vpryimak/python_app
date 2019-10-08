@@ -1,0 +1,68 @@
+---
+
+- name: Create application directory
+  file: 
+    path: /var/www/my_app/
+    state: directory
+    owner: www-data
+    group: www-data
+
+- name: install uwsgi
+  pip: 
+    name: uwsgi
+    virtualenv: /var/www/my_app/myappvenv
+    virtualenv_python: python3
+    virtualenv_site_packages: yes
+
+
+- name: install flask
+  pip: 
+    name: flask
+    virtualenv: /var/www/my_app/myappvenv
+    virtualenv_python: python3
+    virtualenv_site_packages: yes
+
+
+- name: Add ini file
+  template:
+    src: "templates/my_app.ini"
+    dest: "/var/www/my_app/my_app.ini"
+    force: yes
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+
+- name: Add my_app.py file
+  template:
+    src: "templates/my_app.py"
+    dest: "/var/www/my_app/my_app.py"
+    force: yes
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+
+- name: Add wsgi.py file
+  template:
+    src: "templates/wsgi.py"
+    dest: "/var/www/my_app/wsgi.py"
+    force: yes
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+- name: Add my_app.service  file for systemd
+  template:
+    src: "templates/my_app.service"
+    dest: "/etc/systemd/system/my_app.service"
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable my_app into autostart mode
+  systemd:
+    name: my_app
+    enabled: yes
+    state: started
