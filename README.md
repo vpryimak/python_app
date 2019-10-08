@@ -15,8 +15,10 @@
 5. Open http://external_ip_address and see message - "Hello World!"
 
 6. How to check postgres user and password:
-   Connect to instance via ssh and execute command: psql -U my_app  -h localhost -d my_app_db -W
-   
+   Connect to instance via ssh and execute command: 
+
+       psql -U my_app  -h localhost -d my_app_db -W
+
    Postgres dbname - my_app_db, user - my_app, pass - my_app. 
 
 Ansible playbook tested on AWS(Ubuntu Server 18.04). Default user for this OS(ubuntu) which set in playbook-app.yml. 
