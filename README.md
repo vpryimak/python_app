@@ -1,6 +1,6 @@
 1. Clone github repo:
 
-  git clone git@github.com:vpryimak/python_app.git
+     git clone git@github.com:vpryimak/python_app.git
 
 2. Change directory:
 
@@ -18,4 +18,4 @@
    Connect to instance via ssh and execute command: psql -U my_app  -h localhost -d my_app_db -W
    Postgres dbname - my_app_db, user - my_app, pass - my_app. 
 
-Ansible playbook tested on AWS(Ubuntu Server 18.04). Default user for this OS(ubuntu) which set in playbook-app.yml
+Ansible playbook tested on AWS(Ubuntu Server 18.04). Default user for this OS(ubuntu) which set in playbook-app.yml. 
