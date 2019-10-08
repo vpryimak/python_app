@@ -10,7 +10,7 @@
 
 4. Execute ansible playbook
  
-   ansible-playbook --private-key=/your_path_to_private_key/your_private_key_name.pem -i hosts playbook-app.yml
+       ansible-playbook --private-key=/your_path_to_private_key/your_private_key_name.pem -i hosts playbook-app.yml
 
 5. Open http://external_ip_address and see message - "Hello World!"
 
